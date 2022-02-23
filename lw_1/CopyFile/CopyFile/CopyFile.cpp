@@ -13,7 +13,6 @@ struct Args
 	std::string outputFileName;
 };
 
-//1. Разобраться с nullOptional, не стоит использовать неизвестное api
 std::optional<Args> ParseArgs(int argc, char* argv[])
 {
 	if (argc != 3)
@@ -33,7 +32,6 @@ std::optional<Args> ParseArgs(int argc, char* argv[])
 void CopyFile(std::ifstream& input, std::ofstream& output)
 {
 	char ch;
-	//2. Что возвращает input.get()?
 	while (input.get(ch))
 	{
 		if (!output.put(ch))
