@@ -17,15 +17,15 @@ REM If number is too long, program should fail
 %BinToDec% 100100101101010110101010101011101011101011001010101 && goto err
 echo Test 2 passed
 
-REM If binary number exists not only 0 or 1, program should fail
+REM If binary number contains not only 0 or 1, program should fail
 %BinToDec% 1001245 && goto err
 echo Test 3 passed
 
-REM If binary number exists not only digits, program should fail
+REM If binary number contains not only digits, program should fail
 %BinToDec% 100ac && goto err
 echo Test 4 passed
 
-REM If coming element is not a digit, program should fail
+REM If coming element is not a binary digit, program should fail
 %BinToDec% abcc && goto err
 echo Test 5 passed
 

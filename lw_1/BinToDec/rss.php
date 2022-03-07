@@ -1,11 +1,11 @@
-﻿#include <iostream>
+#include <iostream>
 #include <optional>
 #include <string>
 
 const int BINARY_COUNT = 32;
 const int ASCII_DIGIT_OFFSET = 48;
 
-// Если аргумент один, можно не использовать структуру
+//1. Если аргумент один, можно не использовать структуру
 struct Args
 {
 	std::string binaryNumber;
@@ -35,8 +35,6 @@ std::optional<int> BinaryToDecimal(std::string binaryNumber)
 		//Подумать как можно использовать безопасные варианты кастов
 		int digit = (int)binaryNumber[i] - ASCII_DIGIT_OFFSET;
 
-		//istringstream
-
 		if (digit != 0 && digit != 1)
 		{
 			//3. Предлагаю отделить логику от вывода (можно использовать лямба функцию или колбек) 
@@ -52,22 +50,6 @@ std::optional<int> BinaryToDecimal(std::string binaryNumber)
 	return result;
 }
 
-int CheckBiteLength(std::string binaryNumber)
-{
-	if (binaryNumber.length() >= BINARY_COUNT)
-	{
-		std::cout << "Too long binary number\n";
-		return 1;
-	}
-
-	return 0;
-}
-
-void PrintDecimal(int decimal)
-{
-	std::cout << decimal << std::endl;
-}
-
 int main(int argc, char* argv[])
 {
 	auto args = ParseArgs(argc, argv);
@@ -77,11 +59,11 @@ int main(int argc, char* argv[])
 	}
 
 	//2. Попробуй вынести в отдельную функцию
-	if (CheckBiteLength(args->binaryNumber))
+	if (args->binaryNumber.length() >= BINARY_COUNT)
 	{
+		std::cout << "Too long binary number\n";
 		return 1;
 	}
-	
 
 	auto decimal = BinaryToDecimal(args->binaryNumber);
 	if (!decimal)
@@ -90,7 +72,7 @@ int main(int argc, char* argv[])
 	}
 	
 	// 2.(Доп) Попробуй вынести в отдельную функцию
-	PrintDecimal(decimal.value());
+	std::cout << decimal.value();
 
 	return 0;
 }
